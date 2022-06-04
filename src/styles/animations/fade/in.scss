@@ -1,0 +1,31 @@
+@mixin fade-in-start {
+	opacity: 0;
+}
+
+@mixin fade-in-finish {
+	opacity: 1;
+}
+
+@keyframes fade-in {
+	0% {
+		@include fade-in-start;
+	}
+	100% {
+		@include fade-in-finish;
+	}
+}
+
+@media (prefers-reduced-motion: no-preference) {
+
+	[data-a-type="fade-in"]:not([data-a-state="running"], [data-a-state="finished"]) {
+		@include fade-in-start;
+	}
+
+	[data-a-type="fade-in"][data-a-state="running"] {
+		animation: fade-in ease-in-out;
+	}
+
+	[data-a-type="fade-in"][data-a-state="finished"] {
+		@include fade-in-finish;
+	}
+}
