@@ -3,7 +3,7 @@ import './styles/animations/index.scss';
 
 interface constructorData {
 	items: (string | NodeListOf<HTMLElement>),
-	defaultType?: string,
+	defaultType?: 'fade-in' | 'slide-from-bottom',
 	defaultDelay?: number,
 	defaultDuration?: number,
 	defaultOffset?: string,
@@ -21,7 +21,7 @@ class KisAnimate {
 		this.itemsToAnimate = typeof (data.items) === 'string'
 			? document.querySelectorAll<HTMLElement>(data.items)
 			: data.items;
-		this.defaultType = data.defaultType || 'slide';
+		this.defaultType = data.defaultType || 'slide-from-bottom';
 		this.defaultDelay = data.defaultDelay || 0;
 		this.defaultDuration = data.defaultDuration || 800;
 		this.defaultOffset = data.defaultOffset || '0px';
