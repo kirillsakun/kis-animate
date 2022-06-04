@@ -1,4 +1,4 @@
-import './styles/animations/index.scss';
+import './styles/main.scss';
 
 
 // @ts-ignore

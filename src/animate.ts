@@ -1,4 +1,4 @@
-import './styles/main.scss';
+import './styles/animations/index.scss';
 
 
 interface constructorData {
