@@ -27,7 +27,7 @@ class KisAnimate {
 		this.defaultOffset = data.defaultOffset || '0px';
 	}
 
-	init():void {
+	public init():void {
 		for (let index = 0; index < this.itemsToAnimate.length; index += 1) {
 			this.initItem(this.itemsToAnimate[index]);
 		}
