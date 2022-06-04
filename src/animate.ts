@@ -15,7 +15,7 @@ class KisAnimate {
 	defaultDelay:number;
 	defaultDuration: number;
 	defaultOffset: string;
-	states:string[] = ['initialized', 'waiting', 'running', 'finished'];
+	states:ReadonlyArray<string> = ['initialized', 'waiting', 'running', 'finished'];
 
 	constructor(data:constructorData) {
 		this.itemsToAnimate = typeof (data.items) === 'string'
