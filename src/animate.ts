@@ -63,21 +63,25 @@ class KisAnimate {
 
 	private animateItem(item:Element):void {
 		if (item instanceof HTMLElement) {
-		        item.addEventListener("animationend", () => {
-			  item.setAttribute("data-a-state", this.states[3]);
-			  item.style.animationDuration = oldAnimationDuration; // eslint-disable-line no-param-reassign
-		        });
-			
-			const oldAnimationDuration:string = item.style.animationDuration;
+			const onAnimationend = (event:AnimationEvent) => {
+				const { target } = event;
+				if (target instanceof HTMLElement) {
+					target.setAttribute('data-a-state', this.states[3]);
+					target.style.animationDuration = target.getAttribute('data-old-a-duration') || '';
+					target.removeAttribute('data-old-a-duration');
+				}
+			};
+
 			const duration:number = Number(item.dataset.aDuration) || this.defaultDuration;
 			const delay:number = Number(item.dataset.aDelay) || this.defaultDelay;
 
+			item.setAttribute('data-old-a-duration', item.style.animationDuration);
 			item.style.animationDuration = `${duration}ms`; // eslint-disable-line no-param-reassign
 			item.setAttribute('data-a-state', this.states[1]);
 
-			// TODO: rewrite using Promises or something like that
 			setTimeout(() => {
 				item.setAttribute('data-a-state', this.states[2]);
+				item.addEventListener('animationend', onAnimationend, { once: true });
 			}, delay);
 		}
 	}
