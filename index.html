@@ -6,16 +6,25 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	<title>Vite App</title>
 </head>
-<body>
+<body class="body">
 <div id="app">
 	<main class="main">
+		<section class="section hero">
+			<div class="container hero__container">
+				<header class="hero__header">
+					<h1 class="heading heading--xl">Kis Animate</h1>
+					<p>
+						Examples of usage kis-animate module.
+					</p>
+				</header>
+			</div>
+		</section>
 		<section class="section">
-			<div class="container">
-				<h1 class="heading heading--xl">Examples</h1>
-				<div class="heading heading--lg">Default animation example</div>
-				<div class="heading heading--lg" data-a-type="fade-in" data-a-delay="1000">Fade in example (delay: 1000ms)</div>
-				<div class="heading heading--lg" data-a-type="slide-from-bottom" data-a-delay="5000" data-a-duration="800">
-					Slide in from bottom example (delay: 5000ms, duration: 800ms)
+			<div class="container container--grid">
+				<div class="example fade">Fade in (default)</div>
+				<div class="example fade" data-a-delay="1000">Fade in (delay: 1000ms)</div>
+				<div class="example fade" data-a-delay="5000" data-a-duration="1200">
+					Fade in (delay: 5000ms, duration: 1200ms)
 				</div>
 			</div>
 		</section>

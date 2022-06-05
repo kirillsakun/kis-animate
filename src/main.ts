@@ -5,11 +5,9 @@ import './styles/main.scss';
 import KisAnimate from './animate.ts';
 
 
-const examples = new KisAnimate({
-	items: '.heading.heading--lg',
+const fadeAnimations = new KisAnimate({
+	items: '.example.fade',
 	defaultType: 'fade-in',
-	defaultDelay: 100,
-	defaultDuration: 500,
 });
 
-examples.init();
+fadeAnimations.init();
