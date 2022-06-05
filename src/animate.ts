@@ -1,7 +1,7 @@
 import './styles/animations/index.scss';
 
 
-interface constructorData {
+interface InterfaceConstructorData {
 	items: (string | NodeListOf<HTMLElement>),
 	defaultType?: 'fade-in' | 'slide-from-bottom',
 	defaultDelay?: number,
@@ -17,7 +17,7 @@ class KisAnimate {
 	defaultOffset: string;
 	states:ReadonlyArray<string> = ['initialized', 'waiting', 'running', 'finished'];
 
-	constructor(data:constructorData) {
+	constructor(data:InterfaceConstructorData) {
 		this.itemsToAnimate = typeof (data.items) === 'string'
 			? document.querySelectorAll<HTMLElement>(data.items)
 			: data.items;
