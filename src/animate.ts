@@ -27,9 +27,10 @@ class KisAnimate {
 		this.defaultOffset = data.defaultOffset || '0px';
 	}
 
-	public init():void {
+	public async init():Promise<void> {
 		for (let index = 0; index < this.itemsToAnimate.length; index += 1) {
-			this.initItem(this.itemsToAnimate[index]);
+			// eslint-disable-next-line no-await-in-loop
+			await this.initItem(this.itemsToAnimate[index]);
 		}
 	}
 
