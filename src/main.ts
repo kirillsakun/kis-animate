@@ -11,3 +11,10 @@ const fadeAnimations = new KisAnimate({
 });
 
 fadeAnimations.init();
+
+const slideAnimations = new KisAnimate({
+	items: '.example.slide',
+	defaultType: 'slide-from-bottom',
+});
+
+slideAnimations.init();
