@@ -22,7 +22,7 @@
 	}
 
 	[data-a-type="fade-in"][data-a-state="running"] {
-		animation: fade-in ease;
+		animation: fade-in ease-in-out;
 	}
 
 	[data-a-type="fade-in"][data-a-state="finished"] {

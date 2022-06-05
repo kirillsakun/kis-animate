@@ -1,49 +1,53 @@
 import './styles/animations/index.scss';
 
-
-interface InterfaceConstructorData {
-	items: (string | NodeListOf<HTMLElement>),
-	defaultType?: 'fade-in' | 'fade-out' | 'slide-from-bottom',
-	defaultDelay?: number,
-	defaultDuration?: number,
-	defaultOffset?: string,
-}
+import { Constructor, State } from './types';
 
 class KisAnimate {
 	itemsToAnimate:NodeListOf<HTMLElement>;
-	defaultType:string;
-	defaultDelay:number;
+	defaultType: string;
+	defaultDelay: number;
 	defaultDuration: number;
 	defaultOffset: string;
-	states:ReadonlyArray<string> = ['initialized', 'waiting', 'running', 'finished'];
+	state:State = {
+		start: 'initialized',
+		wait: 'waiting',
+		run: 'running',
+		end: 'finished',
+	};
 
-	constructor(data:InterfaceConstructorData) {
+	private DEFAULT_TYPE = 'slide-from-bottom';
+	private DEFAULT_DELAY = 0;
+	private DEFAULT_OFFSET = 0;
+	private DEFAULT_DURATION = 800;
+	private TRASH_HOLD = 0.1;
+	private STATE_ATTR = 'data-a-state';
+
+	constructor(data:Constructor) {
 		this.itemsToAnimate = typeof (data.items) === 'string'
 			? document.querySelectorAll<HTMLElement>(data.items)
 			: data.items;
-		this.defaultType = data.defaultType || 'slide-from-bottom';
-		this.defaultDelay = data.defaultDelay || 0;
-		this.defaultDuration = data.defaultDuration || 800;
-		this.defaultOffset = data.defaultOffset || '0px';
+		this.defaultType = data.defaultType || this.DEFAULT_TYPE;
+		this.defaultDelay = data.defaultDelay || this.DEFAULT_DELAY;
+		this.defaultDuration = data.defaultDuration || this.DEFAULT_DURATION;
+		this.defaultOffset = data.defaultOffset || `${this.DEFAULT_OFFSET}px`;
 	}
 
-	public async init():Promise<void> {
+	public init() {
 		for (let index = 0; index < this.itemsToAnimate.length; index += 1) {
-			// eslint-disable-next-line no-await-in-loop
-			await this.initItem(this.itemsToAnimate[index]);
+			this.initItem(this.itemsToAnimate[index]);
 		}
 	}
 
 	private initItem(item:HTMLElement):void {
-		const type:string = item.dataset.aType || this.defaultType;
+		const type = item.dataset.aType || this.defaultType;
 
-		item.setAttribute('data-a-type', type);
-		item.setAttribute('data-a-state', this.states[0]);
+		item.setAttribute(this.STATE_ATTR, type);
+		item.setAttribute(this.STATE_ATTR, this.state.start);
 
 		const observerOptions:IntersectionObserverInit = {
 			root: null,
 			rootMargin: item.dataset.aOffset || this.defaultOffset,
-			threshold: 0.1,
+			threshold: this.TRASH_HOLD,
 		};
 		const observerCallback:IntersectionObserverCallback = (entries:IntersectionObserverEntry[], observer:IntersectionObserver) => {
 			for (let index = 0; index < entries.length; index += 1) {
@@ -62,27 +66,24 @@ class KisAnimate {
 		animationsObserver.observe(item);
 	}
 
-	private animateItem(item:Element):void {
+	private animateItem(item:Element) {
 		if (item instanceof HTMLElement) {
-			const onAnimationend = (event:AnimationEvent) => {
-				const { target } = event;
-				if (target instanceof HTMLElement) {
-					target.setAttribute('data-a-state', this.states[3]);
-					target.style.animationDuration = target.getAttribute('data-old-a-duration') || '';
-					target.removeAttribute('data-old-a-duration');
-				}
-			};
+			const oldAnimationDuration = item.style.animationDuration;
+			const duration = +(item.dataset.aDuration || this.defaultDuration);
+			const delay = +(item.dataset.aDelay || this.defaultDelay);
 
-			const duration:number = Number(item.dataset.aDuration) || this.defaultDuration;
-			const delay:number = Number(item.dataset.aDelay) || this.defaultDelay;
-
-			item.setAttribute('data-old-a-duration', item.style.animationDuration);
 			item.style.animationDuration = `${duration}ms`; // eslint-disable-line no-param-reassign
-			item.setAttribute('data-a-state', this.states[1]);
+			item.setAttribute('data-a-state', this.state.wait);
+
+			// TODO: rewrite using Promises or something like tha
+			// -> OR better RequestAnimationFrame https://developer.mozilla.org/ru/docs/Web/API/window/requestAnimationFrame
 
 			setTimeout(() => {
-				item.setAttribute('data-a-state', this.states[2]);
-				item.addEventListener('animationend', onAnimationend, { once: true });
+				item.setAttribute(this.STATE_ATTR, this.state.run);
+				setTimeout(() => {
+					item.setAttribute(this.STATE_ATTR, this.state.end);
+					item.style.animationDuration = oldAnimationDuration; // eslint-disable-line no-param-reassign
+				}, duration);
 			}, delay);
 		}
 	}
