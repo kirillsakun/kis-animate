@@ -1,0 +1,33 @@
+@mixin slide-in-from-bottom-start {
+	opacity: 0;
+	transform: translateY(80px);
+}
+
+@mixin slide-in-from-bottom-finish {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+@keyframes slide-in-from-bottom {
+	0% {
+		@include slide-in-from-bottom-start;
+	}
+	100% {
+		@include slide-in-from-bottom-finish;
+	}
+}
+
+@media (prefers-reduced-motion: no-preference) {
+
+	[data-a-type="slide-in-from-bottom"]:not([data-a-state="running"], [data-a-state="finished"]) {
+		@include slide-in-from-bottom-start;
+	}
+
+	[data-a-type="slide-in-from-bottom"][data-a-state="running"] {
+		animation: slide-in-from-bottom ease;
+	}
+
+	[data-a-type="slide-in-from-bottom"][data-a-state="finished"] {
+		@include slide-in-from-bottom-finish;
+	}
+}

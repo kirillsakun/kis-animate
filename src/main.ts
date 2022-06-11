@@ -14,7 +14,7 @@ fadeAnimations.init();
 
 const slideAnimations = new KisAnimate({
 	items: '.example.slide',
-	defaultType: 'slide-from-bottom',
+	defaultType: 'slide-in-from-bottom',
 });
 
 slideAnimations.init();

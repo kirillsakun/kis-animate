@@ -3,7 +3,7 @@ import './styles/animations/index.scss';
 
 interface InterfaceConstructorData {
 	items?: (string | NodeListOf<HTMLElement>),
-	defaultType?: 'fade-in' | 'fade-out' | 'slide-from-bottom' | 'slide-from-top',
+	defaultType?: 'fade-in' | 'fade-out' | 'slide-in-from-bottom' | 'slide-in-from-top',
 	defaultDelay?: number,
 	defaultDuration?: number,
 	defaultOffset?: string,
@@ -13,7 +13,7 @@ interface InterfaceConstructorData {
 class KisAnimate {
 	private STATES: ReadonlyArray<string> = ['initialized', 'waiting', 'running', 'finished'];
 
-	private DEFAULT_TYPE = 'slide-from-bottom';
+	private DEFAULT_TYPE = 'slide-in-from-bottom';
 	private DEFAULT_DELAY = 0;
 	private DEFAULT_DURATION = 800;
 	private DEFAULT_OFFSET = '0px';
