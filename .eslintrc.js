@@ -16,6 +16,7 @@ module.exports = {
 		'unicorn',
 	],
 	rules: {
+		'no-undef': [0],
 		'max-len': [1, 140],
 		'linebreak-style': 0,
 		'no-multiple-empty-lines': [1, { max: 2 }],
@@ -29,7 +30,7 @@ module.exports = {
 				],
 			},
 		],
-		'no-undef': [0],
 		'lines-between-class-members': [1, 'always', { exceptAfterSingleLine: true }],
+		'@typescript-eslint/type-annotation-spacing': [1, {}],
 	},
 };
