@@ -1,6 +1,16 @@
 {
 	"name": "kis-animate",
-	"private": true,
+	"type": "module",
+	"files": ["dist"],
+	"private": false,
+	"main": "./dist/kis-animate.umd.cjs",
+	"module": "./dist/kis-animate.js",
+	"exports": {
+		".": {
+			"import": "./dist/kis-animate.js",
+			"require": "./dist/kis-animate.umd.cjs"
+		}
+	},
 	"version": "0.0.0",
 	"scripts": {
 		"dev": "vite",
@@ -24,6 +34,6 @@
 		"stylelint-scss": "^4.2.0",
 		"stylelint-use-logical-spec": "^4.0.0",
 		"typescript": "^4.5.4",
-		"vite": "^2.9.9"
+		"vite": "^3.0.2"
 	}
 }

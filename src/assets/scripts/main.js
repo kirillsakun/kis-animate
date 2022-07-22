@@ -1,4 +1,4 @@
-import KisAnimate from '../../../src/index.ts';
+import KisAnimate from '../../lib/index.ts';
 
 import '../styles/main.scss';
 
