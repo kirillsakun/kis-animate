@@ -3,7 +3,7 @@ import './styles/animations/index.scss';
 
 interface InterfaceConstructorData {
 	items?: (string | NodeListOf<HTMLElement>),
-	defaultType?: 'fade-in' | 'fade-out' | 'slide-in-from-bottom' | 'slide-in-from-top',
+	defaultType?: string,
 	defaultDelay?: number,
 	defaultDuration?: number,
 	defaultOffset?: string,
