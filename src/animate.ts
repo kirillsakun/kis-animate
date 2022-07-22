@@ -4,6 +4,7 @@ import './styles/animations/index.scss';
 interface InterfaceConstructorData {
 	items?: (string | NodeListOf<HTMLElement>),
 	defaultType?: string,
+	defaultTimingFunction?: string,
 	defaultDelay?: number,
 	defaultDuration?: number,
 	defaultOffset?: string,
@@ -14,6 +15,7 @@ class KisAnimate {
 	private STATES: ReadonlyArray<string> = ['initialized', 'waiting', 'running', 'finished'];
 
 	private DEFAULT_TYPE = 'slide-in-from-bottom';
+	private DEFAULT_TIMING_FUNCTION = 'ease';
 	private DEFAULT_DELAY = 0;
 	private DEFAULT_DURATION = 800;
 	private DEFAULT_OFFSET = '0px';
@@ -21,15 +23,17 @@ class KisAnimate {
 
 	private STATE_ATTRIBUTE = 'data-a-state';
 	private TYPE_ATTRIBUTE = 'data-a-type';
+	private TIMING_FUNCTION_ATTRIBUTE = 'data-a-timing-function';
 	private DELAY_ATTRIBUTE = 'data-a-delay';
 	private DURATION_ATTRIBUTE = 'data-a-duration';
-	private OLD_DURATION_ATTRIBUTE = 'data-a-old-duration';
+	private OLD_ANIMATION_ATTRIBUTE = 'data-a-old';
 	private OFFSET_ATTRIBUTE = 'data-a-offset';
 	private THRESHOLD_ATTRIBUTE = 'data-a-threshold';
 
 
 	itemsToAnimate: NodeListOf<HTMLElement>;
 	defaultType: string;
+	defaultTimingFunction: string;
 	defaultDelay: number;
 	defaultDuration: number;
 	defaultOffset: string;
@@ -42,6 +46,7 @@ class KisAnimate {
 			? document.querySelectorAll<HTMLElement>(items)
 			: items;
 		this.defaultType = data.defaultType || this.DEFAULT_TYPE;
+		this.defaultTimingFunction = data.defaultTimingFunction || this.DEFAULT_TIMING_FUNCTION;
 		this.defaultDelay = data.defaultDelay || this.DEFAULT_DELAY;
 		this.defaultDuration = data.defaultDuration || this.DEFAULT_DURATION;
 		this.defaultOffset = data.defaultOffset || this.DEFAULT_OFFSET;
@@ -89,15 +94,17 @@ class KisAnimate {
 				const { target } = event;
 				if (target instanceof HTMLElement) {
 					target.setAttribute(this.STATE_ATTRIBUTE, this.STATES[3]);
-					target.style.animationDuration = target.getAttribute(this.OLD_DURATION_ATTRIBUTE) || '';
-					target.removeAttribute(this.OLD_DURATION_ATTRIBUTE);
+					target.style.animation = target.getAttribute(this.OLD_ANIMATION_ATTRIBUTE) || '';
+					target.removeAttribute(this.OLD_ANIMATION_ATTRIBUTE);
 				}
 			};
 
+			const timingFunction: string = item.getAttribute(this.TIMING_FUNCTION_ATTRIBUTE) || this.defaultTimingFunction;
 			const duration: number = Number(item.getAttribute(this.DURATION_ATTRIBUTE)) || this.defaultDuration;
 			const delay: number = Number(item.getAttribute(this.DELAY_ATTRIBUTE)) || this.defaultDelay;
 
-			item.setAttribute(this.OLD_DURATION_ATTRIBUTE, item.style.animationDuration);
+			item.setAttribute(this.OLD_ANIMATION_ATTRIBUTE, item.style.animation);
+			item.style.animationTimingFunction = `${timingFunction}`; // eslint-disable-line no-param-reassign
 			item.style.animationDuration = `${duration}ms`; // eslint-disable-line no-param-reassign
 			item.setAttribute(this.STATE_ATTRIBUTE, this.STATES[1]);
 
