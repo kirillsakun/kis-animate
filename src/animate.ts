@@ -39,18 +39,18 @@ class KisAnimate {
 	defaultOffset: string;
 	defaultThreshold: number;
 
-	constructor(data: InterfaceConstructorData) {
-		const items = (data.items || `[${this.TYPE_ATTRIBUTE}]`);
+	constructor(data?: InterfaceConstructorData) {
+		const items = (data?.items || `[${this.TYPE_ATTRIBUTE}]`);
 
 		this.itemsToAnimate = typeof (items) === 'string'
 			? document.querySelectorAll<HTMLElement>(items)
 			: items;
-		this.defaultType = data.defaultType || this.DEFAULT_TYPE;
-		this.defaultTimingFunction = data.defaultTimingFunction || this.DEFAULT_TIMING_FUNCTION;
-		this.defaultDelay = data.defaultDelay || this.DEFAULT_DELAY;
-		this.defaultDuration = data.defaultDuration || this.DEFAULT_DURATION;
-		this.defaultOffset = data.defaultOffset || this.DEFAULT_OFFSET;
-		this.defaultThreshold = data.defaultThreshold || this.DEFAULT_THRESHOLD;
+		this.defaultType = data?.defaultType || this.DEFAULT_TYPE;
+		this.defaultTimingFunction = data?.defaultTimingFunction || this.DEFAULT_TIMING_FUNCTION;
+		this.defaultDelay = data?.defaultDelay || this.DEFAULT_DELAY;
+		this.defaultDuration = data?.defaultDuration || this.DEFAULT_DURATION;
+		this.defaultOffset = data?.defaultOffset || this.DEFAULT_OFFSET;
+		this.defaultThreshold = data?.defaultThreshold || this.DEFAULT_THRESHOLD;
 	}
 
 	public async init(): Promise<void> {
