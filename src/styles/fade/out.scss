@@ -22,7 +22,7 @@
 	}
 
 	[data-a-type="fade-out"][data-a-state="running"] {
-		animation: fade-out ease;
+		animation-name: fade-out;
 	}
 
 	[data-a-type="fade-out"][data-a-state="finished"] {

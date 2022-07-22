@@ -1,9 +1,6 @@
-import './styles/main.scss';
+import KisAnimate from '../../../src/index.ts';
 
-
-// @ts-ignore
-import KisAnimate from './animate.ts';
-
+import '../styles/main.scss';
 
 const fadeAnimations = new KisAnimate({
 	items: '.example.fade',
@@ -14,7 +11,6 @@ fadeAnimations.init();
 
 const slideAnimations = new KisAnimate({
 	items: '.example.slide',
-	defaultType: 'slide-in-from-bottom',
 });
 
 slideAnimations.init();

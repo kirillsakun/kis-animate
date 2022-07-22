@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8"/>
-	<link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+	<link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	<title>Vite App</title>
 </head>
@@ -21,7 +21,7 @@
 		</section>
 		<section class="section">
 			<div class="container container--grid">
-				<!--Fade examples-->
+				<!--Fade demo-->
 				<div class="example fade">Fade in (default)</div>
 				<div class="example fade" data-a-delay="1000">Fade in (delay: 1000ms)</div>
 				<div class="example fade" data-a-delay="3000" data-a-duration="1200">
@@ -32,9 +32,11 @@
 				<div class="example fade" data-a-type="fade-out" data-a-delay="10000" data-a-duration="2000">
 					Fade out (delay: 10000ms, duration: 2000ms)
 				</div>
-				<!--Slide examples-->
+				<!--Slide demo-->
 				<div class="example slide">Slide in from bottom (default)</div>
-				<div class="example slide" data-a-delay="1000">Slide in from bottom (delay: 1000ms)</div>
+				<div class="example slide" data-a-timing-function="cubic-bezier(.49,1.75,.71,.92)">
+					Slide in from bottom (timing-function: linear)
+				</div>
 				<div class="example slide" data-a-type="slide-in-from-top" data-a-delay="3000" data-a-duration="1200">
 					Slide in from top (delay: 2000ms, duration: 1200ms)
 				</div>
@@ -42,6 +44,6 @@
 		</section>
 	</main>
 </div>
-<script type="module" src="/src/main.ts"></script>
+<script type="module" src="./assets/scripts/main.js"></script>
 </body>
 </html>
