@@ -30,9 +30,19 @@ animations.init();
 | Name                  | Attribute                | Type                                  | Default                  | Description                                                                                                                                                                                 |
 |-----------------------|--------------------------|---------------------------------------|--------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | items                 | `-`                      | `string` or `NodeListOf<HTMLElement>` | `'[data-a-type]'`        | CSS selector or collection of items you want to animate.                                                                                                                                    |
-| defaultType           | `data-a-type`            | `string`                              | `'slide-in-from-bottom'` | Name of the animation you want to use. Check [the list of animations available out of the box](/#animations).                                                                               |
+| defaultType           | `data-a-type`            | `string`                              | `'slide-in-from-bottom'` | Name of the animation you want to use. Check [the list of animations available out of the box](https://github.com/kirillsakun/kis-animate#list-of-available-animation-types).               |
 | defaultTimingFunction | `data-a-timing-function` | `string`                              | `'ease'`                 | [Animation timing function](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timing-function "MDN").                                                                              |
 | defaultDelay          | `data-a-delay`           | `number`                              | `0`                      | Delay in milliseconds after which the animation starts playing.                                                                                                                             |
 | defaultDuration       | `data-a-duration`        | `number`                              | `800`                    | Animation duration in milliseconds.                                                                                                                                                         |
 | defaultOffset         | `data-a-offset`          | `string`                              | `'0px'`                  | Allows you to trigger animation a bit later. Technically this is [IntersectionObserver rootMargin](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/rootMargin "MDN"). |
 | defaultThreshold      | `data-a-threshold`       | `number`                              | `0.1`                    | Technically this is [IntersectionObserver threshold](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/rootMargin "MDN").                                               |
+
+### List of available animation types
+
+#### Fade
+	- fade-in
+	- fade-out
+
+#### Slide
+	- slide-in-from-bottom
+	- slide-in-from-top
