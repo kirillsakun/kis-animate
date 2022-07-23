@@ -1,5 +1,6 @@
 {
 	"name": "kis-animate",
+	"version": "1.0.1",
 	"type": "module",
 	"files": ["dist"],
 	"private": false,
@@ -9,7 +10,8 @@
 		".": {
 			"import": "./dist/kis-animate.js",
 			"require": "./dist/kis-animate.umd.cjs"
-		}
+		},
+		"./style":  "./dist/style.css"
 	},
 	"version": "1.0.0",
 	"scripts": {
