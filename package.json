@@ -1,11 +1,17 @@
 {
 	"name": "kis-animate",
 	"version": "1.0.1",
+	"description": "Lightweight library that helps you to animate elements on your pages.",
+	"keywords": ["animations", "animate", "css", "keyframes"],
 	"type": "module",
-	"files": ["dist"],
 	"private": false,
 	"main": "./dist/kis-animate.umd.cjs",
 	"module": "./dist/kis-animate.js",
+	"homepage": "https://github.com/kirillsakun/kis-animate#readme",
+	"bugs": {
+		"url" : "https://github.com/kirillsakun/kis-animate/issues",
+		"email" : "kirillsakun03@gmail.com"
+	},
 	"exports": {
 		".": {
 			"import": "./dist/kis-animate.js",
@@ -13,7 +19,6 @@
 		},
 		"./style":  "./dist/style.css"
 	},
-	"version": "1.0.0",
 	"scripts": {
 		"dev": "vite",
 		"build": "tsc && vite build",
