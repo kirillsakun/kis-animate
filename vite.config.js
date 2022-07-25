@@ -4,6 +4,7 @@ import { resolve } from 'path';
 
 export default defineConfig({
 	build: {
+		minify: false,
 		lib: {
 			entry: resolve(__dirname, 'src/lib/index.ts'),
 			name: 'kis-animate',
