@@ -1,9 +1,8 @@
 {
 	"name": "kis-animate",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"description": "Lightweight library that helps you to animate elements on your pages.",
 	"keywords": ["animations", "animate", "css", "keyframes"],
-	"files": ["./"],
 	"type": "module",
 	"private": false,
 	"main": "./dist/kis-animate.umd.cjs",
