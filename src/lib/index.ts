@@ -6,6 +6,7 @@ interface InterfaceConstructorData {
 	defaultType?: string,
 	defaultTimingFunction?: string,
 	defaultDelay?: number,
+	delayStep?: number,
 	defaultDuration?: number,
 	defaultOffset?: string,
 	defaultThreshold?: number,
@@ -17,6 +18,7 @@ class KisAnimate {
 	private DEFAULT_TYPE = 'slide-in-from-bottom';
 	private DEFAULT_TIMING_FUNCTION = 'ease';
 	private DEFAULT_DELAY = 0;
+	private DELAY_STEP = 0;
 	private DEFAULT_DURATION = 800;
 	private DEFAULT_OFFSET = '0px';
 	private DEFAULT_THRESHOLD = 0.1;
@@ -35,6 +37,7 @@ class KisAnimate {
 	defaultType: string;
 	defaultTimingFunction: string;
 	defaultDelay: number;
+	delayStep: number;
 	defaultDuration: number;
 	defaultOffset: string;
 	defaultThreshold: number;
@@ -48,6 +51,7 @@ class KisAnimate {
 		this.defaultType = data?.defaultType || this.DEFAULT_TYPE;
 		this.defaultTimingFunction = data?.defaultTimingFunction || this.DEFAULT_TIMING_FUNCTION;
 		this.defaultDelay = data?.defaultDelay || this.DEFAULT_DELAY;
+		this.delayStep = data?.delayStep || this.DELAY_STEP;
 		this.defaultDuration = data?.defaultDuration || this.DEFAULT_DURATION;
 		this.defaultOffset = data?.defaultOffset || this.DEFAULT_OFFSET;
 		this.defaultThreshold = data?.defaultThreshold || this.DEFAULT_THRESHOLD;
@@ -56,11 +60,11 @@ class KisAnimate {
 	public async init(): Promise<void> {
 		for (let index = 0; index < this.itemsToAnimate.length; index += 1) {
 			// eslint-disable-next-line no-await-in-loop
-			await this.initItem(this.itemsToAnimate[index]);
+			await this.initItem(this.itemsToAnimate[index], index);
 		}
 	}
 
-	private initItem(item: HTMLElement): void {
+	private initItem(item: HTMLElement, index: number): void {
 		const type: string = item.getAttribute(this.TYPE_ATTRIBUTE) || this.defaultType;
 
 		item.setAttribute(this.TYPE_ATTRIBUTE, type);
@@ -72,12 +76,12 @@ class KisAnimate {
 			threshold: Number(item.getAttribute(this.THRESHOLD_ATTRIBUTE)) || this.defaultThreshold,
 		};
 		const observerCallback: IntersectionObserverCallback = (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
-			for (let index = 0; index < entries.length; index += 1) {
-				const entry = entries[index];
+			for (let entryIndex = 0; entryIndex < entries.length; entryIndex += 1) {
+				const entry = entries[entryIndex];
 
 				if (entry.isIntersecting) {
 					const { target } = entry;
-					this.animateItem(target);
+					this.animateItem(target, index);
 					observer.unobserve(target);
 				}
 			}
@@ -88,7 +92,7 @@ class KisAnimate {
 		animationsObserver.observe(item);
 	}
 
-	private animateItem(item: Element): void {
+	private animateItem(item: Element, index: number): void {
 		if (item instanceof HTMLElement) {
 			const onAnimationend = (event: AnimationEvent) => {
 				const { target } = event;
@@ -101,7 +105,7 @@ class KisAnimate {
 
 			const timingFunction: string = item.getAttribute(this.TIMING_FUNCTION_ATTRIBUTE) || this.defaultTimingFunction;
 			const duration: number = Number(item.getAttribute(this.DURATION_ATTRIBUTE)) || this.defaultDuration;
-			const delay: number = Number(item.getAttribute(this.DELAY_ATTRIBUTE)) || this.defaultDelay;
+			const delay: number = Number(item.getAttribute(this.DELAY_ATTRIBUTE)) || this.defaultDelay + (this.delayStep * index);
 
 			item.setAttribute(this.OLD_ANIMATION_ATTRIBUTE, item.style.animation);
 			item.style.animationTimingFunction = `${timingFunction}`; // eslint-disable-line no-param-reassign
