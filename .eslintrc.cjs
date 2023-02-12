@@ -1,36 +1,22 @@
 module.exports = {
-	env: {
-		browser: true,
-		es2021: true,
-	},
 	extends: [
 		'airbnb-base',
+		'airbnb-typescript/base',
+		'prettier',
 	],
 	parser: '@typescript-eslint/parser',
 	parserOptions: {
 		ecmaVersion: 'latest',
 		sourceType: 'module',
+		project: './tsconfig.json',
 	},
+	ignorePatterns: ['dist/**/*.*'],
 	plugins: [
 		'@typescript-eslint',
-		'unicorn',
+		'prettier',
 	],
 	rules: {
-		'no-undef': [0],
-		'max-len': [1, 140],
-		'linebreak-style': 0,
-		'no-multiple-empty-lines': [1, { max: 2 }],
-		indent: [1, 'tab'],
-		'no-tabs': ['error', { allowIndentationTabs: true }],
-		'unicorn/prefer-add-event-listener': [
-			'error', {
-				excludedPackages: [
-					'koa',
-					'sax',
-				],
-			},
-		],
-		'lines-between-class-members': [1, 'always', { exceptAfterSingleLine: true }],
+		'prettier/prettier': [1],
 		'@typescript-eslint/type-annotation-spacing': [1, {}],
 	},
 };

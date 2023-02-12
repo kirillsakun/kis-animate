@@ -1,24 +1,27 @@
-// @ts-ignore
-import InterfaceKisAnimateConstructorData from './types.ts';
-// @ts-ignore
-import { DEFAULTS, STATES } from './constants.ts';
+import { InterfaceKisAnimateConstructorData } from './types';
+import { DEFAULTS, STATES } from './constants';
 
 class KisAnimate {
 	itemsToAnimate: NodeListOf<HTMLElement>;
+
 	type: string;
+
 	timingFunction: string;
+
 	delay: number;
+
 	delayStep: number;
+
 	duration: number;
+
 	offset: string;
+
 	threshold: number;
 
 	constructor(data?: InterfaceKisAnimateConstructorData) {
-		const items = (data?.items || `[${DEFAULTS.ATTRIBUTES.TYPE}]`);
+		const items = data?.items || `[${DEFAULTS.ATTRIBUTES.TYPE}]`;
 
-		this.itemsToAnimate = typeof (items) === 'string'
-			? document.querySelectorAll<HTMLElement>(items)
-			: items;
+		this.itemsToAnimate = typeof items === 'string' ? document.querySelectorAll<HTMLElement>(items) : items;
 		this.type = data?.type || DEFAULTS.VALUES.TYPE;
 		this.timingFunction = data?.timingFunction || DEFAULTS.VALUES.TIMING_FUNCTION;
 		this.delay = data?.delay || DEFAULTS.VALUES.DELAY;
@@ -46,7 +49,10 @@ class KisAnimate {
 			rootMargin: item.getAttribute(DEFAULTS.ATTRIBUTES.OFFSET) || this.offset,
 			threshold: Number(item.getAttribute(DEFAULTS.ATTRIBUTES.THRESHOLD)) || this.threshold,
 		};
-		const observerCallback: IntersectionObserverCallback = (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
+		const observerCallback: IntersectionObserverCallback = (
+			entries: IntersectionObserverEntry[],
+			observer: IntersectionObserver
+		) => {
 			for (let entryIndex = 0; entryIndex < entries.length; entryIndex += 1) {
 				const entry = entries[entryIndex];
 
@@ -75,7 +81,7 @@ class KisAnimate {
 
 		const timingFunction: string = item.getAttribute(DEFAULTS.ATTRIBUTES.TIMING_FUNCTION) || this.timingFunction;
 		const duration: number = Number(item.getAttribute(DEFAULTS.ATTRIBUTES.DURATION)) || this.duration;
-		const delay: number = Number(item.getAttribute(DEFAULTS.ATTRIBUTES.DELAY)) || this.delay + (this.delayStep * index);
+		const delay: number = Number(item.getAttribute(DEFAULTS.ATTRIBUTES.DELAY)) || this.delay + this.delayStep * index;
 
 		item.setAttribute(DEFAULTS.ATTRIBUTES.OLD_ANIMATION, item.style.animation);
 		item.style.animationTimingFunction = timingFunction; // eslint-disable-line no-param-reassign
@@ -88,6 +94,5 @@ class KisAnimate {
 		}, delay);
 	}
 }
-
 
 export default KisAnimate;
