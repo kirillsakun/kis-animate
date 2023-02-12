@@ -55,11 +55,12 @@ class KisAnimateText {
 
 		const timingFunction: string = item.getAttribute(TEXT_DEFAULTS.ATTRIBUTES.TIMING_FUNCTION) || this.timingFunction;
 		const duration: number = Number(item.getAttribute(TEXT_DEFAULTS.ATTRIBUTES.DURATION)) || this.duration;
+		const symbolDelay: number = Number(item.getAttribute(TEXT_DEFAULTS.ATTRIBUTES.SYMBOL_DELAY)) || this.symbolDelay;
 
 		for (let index = 0; index < symbolsElements?.length; index += 1) {
 			const symbolElement = symbolsElements[index];
 
-			symbolElement.style.transitionDelay = `${index * this.symbolDelay}ms`;
+			symbolElement.style.transitionDelay = `${index * symbolDelay}ms`;
 			symbolElement.style.transitionTimingFunction = timingFunction;
 			symbolElement.style.transitionDuration = `${duration}ms`;
 		}
@@ -81,7 +82,7 @@ class KisAnimateText {
 
 				if (entry.isIntersecting) {
 					const { target } = entry;
-					this.animateItem(target as HTMLElement, symbolsElements.length);
+					this.animateItem(target as HTMLElement, symbolsElements.length, symbolDelay);
 					observer.unobserve(target);
 				}
 			}
@@ -92,7 +93,7 @@ class KisAnimateText {
 		animationsObserver.observe(item);
 	}
 
-	private animateItem(item: HTMLElement, symbolsNumber: number): void {
+	private animateItem(item: HTMLElement, symbolsNumber: number, symbolDelay: number): void {
 		const delay: number = Number(item.getAttribute(TEXT_DEFAULTS.ATTRIBUTES.DELAY)) || this.delay;
 
 		item.setAttribute(TEXT_DEFAULTS.ATTRIBUTES.STATE, STATES[1]);
@@ -101,7 +102,7 @@ class KisAnimateText {
 		}, delay);
 		setTimeout(() => {
 			item.setAttribute(TEXT_DEFAULTS.ATTRIBUTES.STATE, STATES[3]);
-		}, delay + this.duration + symbolsNumber * this.symbolDelay);
+		}, delay + this.duration + symbolsNumber * symbolDelay);
 	}
 }
 
