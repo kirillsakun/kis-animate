@@ -1,7 +1,7 @@
 {
 	"name": "kis-animate",
-	"version": "1.0.4",
-	"description": "Lightweight library that helps you to animate elements on your pages.",
+	"version": "2.0.0",
+	"description": "Lightweight library that helps you to animate elements and text.",
 	"keywords": [
 		"animations",
 		"animate",
