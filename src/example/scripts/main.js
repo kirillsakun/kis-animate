@@ -2,19 +2,24 @@ import { KisAnimate, KisAnimateText } from '../../lib/index';
 
 import '../styles/main.scss';
 
-const fadeAnimations = new KisAnimate({
-	items: '.example.fade',
+const fadeInAnimations = new KisAnimate({
+	items: '.example.fade-in',
 	type: 'fade-in',
 });
-fadeAnimations.init();
+fadeInAnimations.init();
+
+const fadeOutAnimations = new KisAnimate({
+	items: '.example.fade-out',
+	type: 'fade-out',
+	delay: 5000,
+	delayStep: 200,
+});
+fadeOutAnimations.init();
 
 const slideAnimations = new KisAnimate({
 	items: '.example.slide',
 });
 slideAnimations.init();
 
-const textAnimation = new KisAnimateText({
-	type: 'mask-slide-in-from-bottom',
-	symbolDelayStep: 25,
-});
+const textAnimation = new KisAnimateText();
 textAnimation.init();

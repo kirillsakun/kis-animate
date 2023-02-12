@@ -12,40 +12,50 @@
 		<section class="section hero">
 			<div class="container hero__container">
 				<header class="hero__header">
-					<h1 class="heading heading--xl">Kis Animate</h1>
+					<h1 class="heading heading--xl">KisAnimate package</h1>
 					<p>
-						Examples of usage kis-animate module.
+						Examples of usage KisAnimate and KisAnimateText modules.
 					</p>
 				</header>
 			</div>
 		</section>
 		<section class="section">
+			<div class="container">
+				<h2 class="heading heading--lg">KisAnimate usage examples</h2>
+			</div>
 			<div class="container container--grid">
 				<!--Fade demo-->
-				<div class="example fade">Fade in (default)</div>
-				<div class="example fade" data-a-delay="1000">Fade in (delay: 1000ms)</div>
-				<div class="example fade" data-a-delay="3000" data-a-duration="1200">
+				<div class="example fad-in">Fade in (default)</div>
+				<div class="example fade-in" data-a-delay="1000">Fade in (delay: 1000ms)</div>
+				<div class="example fade-in" data-a-delay="3000" data-a-duration="1200">
 					Fade in (delay: 3000ms, duration: 1200ms)
 				</div>
-				<div class="example fade" data-a-type="fade-out" data-a-delay="4750">Fade out (delay: 4750ms)</div>
-				<div class="example fade" data-a-type="fade-out" data-a-delay="5000">Fade out (delay: 5000ms)</div>
-				<div class="example fade" data-a-type="fade-out" data-a-delay="10000" data-a-duration="2000">
-					Fade out (delay: 10000ms, duration: 2000ms)
-				</div>
+
+				<div class="example fade-out" data-a-type="fade-out">Fade out (delayStep: 200) [1]</div>
+				<div class="example fade-out" data-a-type="fade-out">Fade out (delayStep: 200) [2]</div>
+				<div class="example fade-out" data-a-type="fade-out">Fade out (delayStep: 200) [3]</div>
 				<!--Slide demo-->
 				<div class="example slide">Slide in from bottom (default)</div>
 				<div class="example slide" data-a-timing-function="cubic-bezier(.49,1.75,.71,.92)">
-					Slide in from bottom (timing-function: linear)
+					Slide in from bottom (timing-function: cubic-bezier(.49,1.75,.71,.92))
 				</div>
 				<div class="example slide" data-a-type="slide-in-from-top" data-a-delay="3000" data-a-duration="1200">
 					Slide in from top (delay: 2000ms, duration: 1200ms)
 				</div>
+
 			</div>
 		</section>
 		<section class="section">
 			<div class="container">
-				<h2 class="heading heading--xl" data-a-text-type="slide-in-from-bottom-mask"><span class="color-accent-1">This</span> is a <em class="no-wrap">"letter-<span class="color-accent-2">by</span>-letter"</em> animati<span class="color-accent-3">on</span></h2>
-				<p data-a-text-type="slide-in-from-bottom-mask">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas posuere dolor in commodo tristique. Suspendisse tellus mi, molestie et sagittis sed, aliquet ut mauris. Vestibulum congue nulla id nunc accumsan, aliquet tristique dolor placerat. Nam luctus lorem at ante facilisis, id blandit eros elementum. Nam a dignissim felis, vel sollicitudin nisi. Etiam non sapien in diam mollis feugiat. Curabitur dictum a neque quis suscipit. Etiam vel nibh vel diam mollis hendrerit a ac risus. </p>
+				<h2 class="heading heading--lg">KisAnimateText usage examples</h2>
+
+				<div class="heading heading--md" data-a-text-type="slide-in-from-bottom">
+					<span class="color-accent-1">Slide </span> in <em>from <span class="color-accent-2">bottom</span></em> <span class="color-accent-3">animation</span>
+				</div>
+
+				<div class="heading heading--md" data-a-text-type="slide-in-from-bottom-mask" data-a-text-symbol-delay="20">
+					<span class="color-accent-1">Slide </span> in <em>from <span class="color-accent-2">bottom</span></em> mask <span class="color-accent-3">animation</span>
+				</div>
 			</div>
 		</section>
 	</main>
