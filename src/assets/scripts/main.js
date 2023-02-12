@@ -1,16 +1,21 @@
-import KisAnimate from '../../lib/index.ts';
+import { KisAnimate, KisAnimateText } from '../../lib/index.ts';
 
 import '../styles/main.scss';
 
 const fadeAnimations = new KisAnimate({
 	items: '.example.fade',
-	defaultType: 'fade-in',
+	type: 'fade-in',
 });
-
 fadeAnimations.init();
 
 const slideAnimations = new KisAnimate({
 	items: '.example.slide',
 });
-
 slideAnimations.init();
+
+
+const textAnimation = new KisAnimateText({
+	type: 'mask-slide-in-from-bottom',
+	symbolDelayStep: 25,
+});
+textAnimation.init();
