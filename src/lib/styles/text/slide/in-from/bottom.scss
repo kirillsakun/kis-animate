@@ -10,23 +10,21 @@
 
 
 @media (prefers-reduced-motion: no-preference) {
-
-	[data-a-text-type="slide-in-from-bottom-mask"] [data-a-text-word] {
+	[data-a-text-type="slide-in-from-bottom"] [data-a-text-word] {
 		display: inline-block;
-		overflow-y: clip;
 		white-space: nowrap;
 	}
-	[data-a-text-type="slide-in-from-bottom-mask"] [data-a-text-symbol] {
+	[data-a-text-type="slide-in-from-bottom"] [data-a-text-symbol] {
 		display: inline-block;
 	}
 
-	[data-a-text-type="slide-in-from-bottom-mask"]:not([data-a-text-state="running"], [data-a-text-state="finished"]) {
+	[data-a-text-type="slide-in-from-bottom"]:not([data-a-text-state="running"], [data-a-text-state="finished"]) {
 		[data-a-text-symbol] {
 			@include text-mask-slide-in-from-bottom-start;
 		}
 	}
 
-	[data-a-text-type="slide-in-from-bottom-mask"]:is([data-a-text-state="running"], [data-a-text-state="finished"]) {
+	[data-a-text-type="slide-in-from-bottom"]:is([data-a-text-state="running"], [data-a-text-state="finished"]) {
 		[data-a-text-symbol] {
 			@include text-mask-slide-in-from-bottom-finish;
 		}
