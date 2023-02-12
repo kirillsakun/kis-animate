@@ -1,4 +1,4 @@
-import { KisAnimate, KisAnimateText } from '../../lib/index.ts';
+import { KisAnimate, KisAnimateText } from '../../lib/index';
 
 import '../styles/main.scss';
 
@@ -12,7 +12,6 @@ const slideAnimations = new KisAnimate({
 	items: '.example.slide',
 });
 slideAnimations.init();
-
 
 const textAnimation = new KisAnimateText({
 	type: 'mask-slide-in-from-bottom',
