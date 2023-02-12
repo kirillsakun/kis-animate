@@ -2,22 +2,27 @@
 	"name": "kis-animate",
 	"version": "1.0.4",
 	"description": "Lightweight library that helps you to animate elements on your pages.",
-	"keywords": ["animations", "animate", "css", "keyframes"],
+	"keywords": [
+		"animations",
+		"animate",
+		"css",
+		"keyframes"
+	],
 	"type": "module",
 	"private": false,
 	"main": "./dist/kis-animate.umd.cjs",
 	"module": "./dist/kis-animate.js",
 	"homepage": "https://github.com/kirillsakun/kis-animate#readme",
 	"bugs": {
-		"url" : "https://github.com/kirillsakun/kis-animate/issues",
-		"email" : "kirillsakun03@gmail.com"
+		"url": "https://github.com/kirillsakun/kis-animate/issues",
+		"email": "kirillsakun03@gmail.com"
 	},
 	"exports": {
 		".": {
 			"import": "./dist/kis-animate.js",
 			"require": "./dist/kis-animate.umd.cjs"
 		},
-		"./style":  "./dist/style.css"
+		"./style": "./dist/style.css"
 	},
 	"scripts": {
 		"dev": "vite",
@@ -25,22 +30,23 @@
 		"preview": "vite preview"
 	},
 	"devDependencies": {
-		"@typescript-eslint/eslint-plugin": "^5.27.0",
-		"@typescript-eslint/parser": "^5.27.0",
-		"eslint": "^8.17.0",
+		"@typescript-eslint/eslint-plugin": "^5.46.1",
+		"@typescript-eslint/parser": "^5.46.1",
+		"eslint": "^8.29.0",
 		"eslint-config-airbnb-base": "^15.0.0",
 		"eslint-config-airbnb-typescript": "^17.0.0",
 		"eslint-plugin-import": "^2.26.0",
 		"eslint-plugin-unicorn": "^42.0.0",
-		"postcss-scss": "^4.0.4",
-		"sass": "^1.52.2",
-		"stylelint": "^14.8.5",
+		"postcss": "^8.4.20",
+		"postcss-scss": "^4.0.6",
+		"sass": "^1.56.2",
+		"stylelint": "^14.16.0",
 		"stylelint-color-format": "^1.1.0",
 		"stylelint-config-idiomatic-order": "^8.1.0",
 		"stylelint-config-recommended": "^7.0.0",
-		"stylelint-scss": "^4.2.0",
-		"stylelint-use-logical-spec": "^4.0.0",
-		"typescript": "^4.5.4",
-		"vite": "^3.0.2"
+		"stylelint-scss": "^4.3.0",
+		"stylelint-use-logical-spec": "^4.1.0",
+		"typescript": "^4.9.4",
+		"vite": "^3.2.5"
 	}
 }
