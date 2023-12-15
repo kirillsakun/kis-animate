@@ -43,7 +43,7 @@ class KisAnimateText {
 	private initItem(item: HTMLElement): void {
 		const type: string = item.getAttribute(TEXT_DEFAULTS.ATTRIBUTES.TYPE) || this.type;
 
-		const { symbolsElements } = splitBySymbols({
+		const { symbolsElements, originalText } = splitBySymbols({
 			element: item,
 			wordSpanAttribute: TEXT_DEFAULTS.ATTRIBUTES.WORD,
 			symbolSpanAttribute: TEXT_DEFAULTS.ATTRIBUTES.SYMBOL,
@@ -89,7 +89,9 @@ class KisAnimateText {
 		};
 
 		const animationsObserver = new IntersectionObserver(observerCallback, observerOptions);
-
+		if (originalText) {
+			item.setAttribute('aria-label', originalText);
+		}
 		animationsObserver.observe(item);
 	}
 
