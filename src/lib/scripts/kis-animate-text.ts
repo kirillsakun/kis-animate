@@ -43,7 +43,7 @@ class KisAnimateText {
 	private initItem(item: HTMLElement): void {
 		const type: string = item.getAttribute(TEXT_DEFAULTS.ATTRIBUTES.TYPE) || this.type;
 
-		const { symbolsElements } = splitBySymbols({
+		const { symbolsElements, originalText, originalHTML } = splitBySymbols({
 			element: item,
 			wordSpanAttribute: TEXT_DEFAULTS.ATTRIBUTES.WORD,
 			symbolSpanAttribute: TEXT_DEFAULTS.ATTRIBUTES.SYMBOL,
@@ -52,6 +52,13 @@ class KisAnimateText {
 		if (!symbolsElements || !symbolsElements.length) {
 			return;
 		}
+
+		const onLastSymbolTransitionend = () => {
+			if (!originalHTML) return;
+			const currentItem = item;
+			currentItem.innerHTML = originalHTML;
+			currentItem.removeAttribute('aria-label');
+		};
 
 		const timingFunction: string = item.getAttribute(TEXT_DEFAULTS.ATTRIBUTES.TIMING_FUNCTION) || this.timingFunction;
 		const duration: number = Number(item.getAttribute(TEXT_DEFAULTS.ATTRIBUTES.DURATION)) || this.duration;
@@ -88,8 +95,12 @@ class KisAnimateText {
 			}
 		};
 
-		const animationsObserver = new IntersectionObserver(observerCallback, observerOptions);
+		if (originalText) item.setAttribute('aria-label', originalText);
 
+		symbolsElements[symbolsElements.length - 1].addEventListener('transitionend', onLastSymbolTransitionend, {
+			once: true,
+		});
+		const animationsObserver = new IntersectionObserver(observerCallback, observerOptions);
 		animationsObserver.observe(item);
 	}
 
