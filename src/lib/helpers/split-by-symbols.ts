@@ -8,6 +8,7 @@ interface splitBySymbolsInterface {
 	wordsElements?: NodeListOf<HTMLElement>;
 	symbolsElements?: NodeListOf<HTMLElement>;
 	originalText?: string;
+	originalHTML?: string;
 }
 
 const splitBySymbols = ({
@@ -16,6 +17,7 @@ const splitBySymbols = ({
 	symbolSpanAttribute,
 }: splitBySymbolsPropertiesInterface): splitBySymbolsInterface => {
 	const originalText = element.textContent?.trim();
+	const originalHTML = element.innerHTML;
 	// eslint-disable-next-line no-param-reassign
 	element.innerHTML = element.innerHTML.replace(/(^|<\/?[^>]+>|\s+)([^\s<]+)/g, `$1<span ${wordSpanAttribute}="">$2</span>`);
 
@@ -31,6 +33,7 @@ const splitBySymbols = ({
 		wordsElements: element.querySelectorAll(`[${wordSpanAttribute}]`),
 		symbolsElements: element.querySelectorAll(`[${symbolSpanAttribute}]`),
 		originalText,
+		originalHTML,
 	};
 };
 
